@@ -1,6 +1,7 @@
 FROM ubuntu:jammy
 
 ARG ARCHIVE_URL="https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz"
+ARG TL_MIRROR_URL="https://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TEXLIVE_PATH /usr/local/texlive/current/bin/x86_64-linux
@@ -13,14 +14,14 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get autoclean -y
 
-COPY ./texlive.profile ./
+COPY ./texlive.profile /tmp
 # Official Installation Procedure
 # See: https://tug.org/texlive/quickinstall.html
 RUN cd /tmp \
     && wget -nv $ARCHIVE_URL \
     && zcat < install-tl-unx.tar.gz | tar xf - \
     && cd install-tl-* \
-    && perl ./install-tl --profile=texlive.profile --no-interaction
+    && perl ./install-tl --profile=/tmp/texlive.profile --repository=$TL_MIRROR_URL --no-interaction
 
 # Create a symbolic link for the installed version of texlive to a more generic path
 RUN ln -s $(find /usr/local/texlive -maxdepth 1 -type d -name "20??") /usr/local/texlive/current
