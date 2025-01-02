@@ -2,9 +2,13 @@
 
 # Packages to install
 PACKAGES=(
+    arydshln
     comment
+    float
+    here
+    jknapltx
+    listings
     rsfs
-    jknapltx # Need for using mathrsfs
 )
 
 tlmgr install "${PACKAGES[@]}"
