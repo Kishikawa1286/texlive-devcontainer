@@ -8,7 +8,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "James-Yu.latex-workshop"
+                "James-Yu.latex-workshop@10.7.4"
             ],
             "settings": {
                 "latex-workshop.latex.autoBuild.interval": 0,
@@ -38,8 +38,8 @@
                     "editor.formatOnPaste": true,
                     "editor.defaultFormatter": "James-Yu.latex-workshop"
                 },
-                "latex-workshop.latexindent.path": "/usr/local/texlive/current/bin/linux/latexindent",
-                "latex-workshop.latexindent.args": [
+                "latex-workshop.formatting.latexindent.path": "/usr/local/texlive/current/bin/linux/latexindent",
+                "latex-workshop.formatting.latexindent.args": [
                     "%TMPFILE%",
                     "-c=%DIR%/",
                     "-y=defaultIndent: '%INDENT%'"
